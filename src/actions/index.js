@@ -18,3 +18,8 @@ export const addClient = (client) => ({
   type: 'ADD_CLIENT',
   client
 });
+
+export const addObject = (object) => ({
+  type: 'ADD_OBJECT',
+  object
+});

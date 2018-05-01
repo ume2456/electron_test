@@ -3,6 +3,7 @@ const initialState = {
   id: 0,
   messages: [],
   client: null,
+  objects: [],
 };
 
 export default (state = initialState, action) => {
@@ -42,6 +43,14 @@ export default (state = initialState, action) => {
     return {
       ...state,
       client: action.client,
+    };
+  case 'ADD_OBJECT':
+    return {
+      ...state,
+      objects: [
+        ...state.objects,
+        action.object,
+      ]
     };
   default: break;
   }

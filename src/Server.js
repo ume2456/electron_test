@@ -12,6 +12,127 @@ io = socket(server);
 io.on('connection', (socket) => {
   console.log('connection');
   io.emit('MESSAGE', {'name': 'Server', 'message': 'Hello'});
+  io.emit('ADD_OBJECT', {
+    id: 1,
+    parent: 0,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 2,
+    parent: 0,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 3,
+    parent: 1,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+  io.emit('ADD_OBJECT', {
+    id: 4,
+    parent: 3,
+  });
+
   socket.on('disconnect', (socket) => {
     console.log('disconnected');
   })
