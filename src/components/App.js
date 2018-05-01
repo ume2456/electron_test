@@ -41,10 +41,8 @@ class App extends Component {
       <MuiThemeProvider muiTheme={ getMuiTheme(lightBaseTheme) }>
         <div style={ Styles.Container }>
           <div style={ Styles.Contents }>
-            <div> {/* HACK: flexなコンポーネントの直下にposition:fixedなコンポーネントは正しく追加されないので空のdivを挿入*/}
-              <div style={ Styles.Hierarchy }>
-                <ObjectHierarchy />
-              </div>
+            <div style={ Styles.Hierarchy }>
+              <ObjectHierarchy />
             </div>
             <div style={ Styles.Detail }>
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -79,16 +77,20 @@ const Styles = {
   Contents: {
     backgroundColor: '#0a0',
     display: 'flex',
+    justifyContent: 'left',
   },
   Hierarchy: {
     backgroundColor: '#abc',
-    position: 'fixed',
-    width: HierarchyWidth,
+    minWidth: HierarchyWidth,
+    maxWidth: '35%',
     height: `calc(100vh - ${FooterHeight})`,
     overflow: 'auto',
+    resize: 'horizontal',
   },
   Detail: {
-    marginLeft: HierarchyWidth,
+    height: `calc(100vh - ${FooterHeight})`,
+    flexGrow: '1',
+    overflow: 'auto',
   },
   Footer: {
     position: 'fixed',

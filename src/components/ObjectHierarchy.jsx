@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  Divider,
+  Subheader,
   List,
   ListItem
 } from 'material-ui';
@@ -22,7 +24,6 @@ const recursiveList = (node, index) => {
     );
     props = {
       ...props,
-      primaryTogglesNestedList: true,
       nestedItems: children
     };
   }
@@ -41,9 +42,11 @@ const createHierarchy = (list) => {
 const ObjectHierarchy = (props) => {
   return (
     <List>
-    {
-      createHierarchy(props.objects)
-    }
+      <Subheader>ObjectHierarchy</Subheader>
+      <Divider />
+      {
+        createHierarchy(props.objects)
+      }
     </List>
   );
 };
