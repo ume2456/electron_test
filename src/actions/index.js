@@ -19,7 +19,17 @@ export const addClient = (client) => ({
   client
 });
 
+export const addType = (object) => ({
+  type: 'ADD_TYPE',
+  object
+});
+
 export const addObject = (object) => ({
   type: 'ADD_OBJECT',
   object
+});
+
+export const selectInstance = (id) => ({
+  type: 'SELECT_INSTANCE',
+  id
 });

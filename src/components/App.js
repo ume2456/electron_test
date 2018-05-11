@@ -13,9 +13,9 @@ import NameForm from './NameForm';
 import MessageForm from './MessageForm';
 import MessageList from './MessageList';
 import ObjectHierarchy from './ObjectHierarchy';
+import PropertyPage from './PropertyPage';
 import Client from '../containers/Client';
 import { isUndef } from '../utility';
-import { callbackify } from 'util';
 
 const ADDRESS = 'localhost';
 const PORT = '5000';
@@ -34,12 +34,17 @@ class App extends Component {
         props.actions.addObject(data);
       }
     });
+    client.setEvent('ADD_TYPE', (data) => {
+      if (!isUndef(data)) {
+        props.actions.addType(data);
+      }
+    });
     props.actions.addClient(client);
   }
   render() {
     return (
       <MuiThemeProvider muiTheme={ getMuiTheme(lightBaseTheme) }>
-        <div style={ Styles.Container }>
+        <div>
           <div style={ Styles.Contents }>
             <div style={ Styles.Hierarchy }>
               <ObjectHierarchy />
@@ -51,6 +56,9 @@ class App extends Component {
               </div>
               <div style={ Styles.MessageList }>
                 <MessageList />
+              </div>
+              <div>
+                <PropertyPage />
               </div>
             </div>
           </div>
