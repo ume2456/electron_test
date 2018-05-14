@@ -11,24 +11,18 @@ import {
 import * as actions from '../actions/index';
 import { listToTree, isUndef } from '../utility';
 
-const recursiveList = (node, index, types, selectInstance) => {
+const recursiveList = (node, index, selectInstance) => {
   if (isUndef(node)) { return; }
-  let node_type = node.id;
-  if (!isUndef(node.type_id))
-  if (!isUndef(types[node.type_id]))
-  {
-    node_type = types[node.type_id].type;
-  }
   let props = {
     key: node.id,
-    primaryText: node_type,
+    primaryText: node.name,
     onClick: () => {
       selectInstance(node.id)
     }
   };
   if (!isUndef(node.child)) {
     const children = node.child.map(
-      (node, i) => recursiveList(node, i, types, selectInstance)
+      (node, i) => recursiveList(node, i, selectInstance)
     );
     props = {
       ...props,
@@ -38,12 +32,12 @@ const recursiveList = (node, index, types, selectInstance) => {
   return (React.createElement(ListItem, props));
 }
 
-const createHierarchy = (list, types, selectInstance) => {
+const createHierarchy = (list, selectInstance) => {
   if (isUndef(list)) { return; }
   const tree = listToTree(list, 'id', 'parent');
   if (isUndef(tree)) { return; }
   return tree.map(
-    (node, i) => recursiveList(node, i, types, selectInstance)
+    (node, i) => recursiveList(node, i, selectInstance)
   );
 }
 
@@ -53,7 +47,7 @@ const ObjectHierarchy = (props) => {
       <Subheader>ObjectHierarchy</Subheader>
       <Divider />
       {
-        createHierarchy(props.object_list, props.type_map, props.actions.selectInstance)
+        createHierarchy(props.object_list, props.actions.selectInstance)
       }
     </List>
   );
@@ -61,7 +55,6 @@ const ObjectHierarchy = (props) => {
 
 const mapStateToProps = state => ({
   object_list: state.object_list,
-  type_map: state.type_map,
 });
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch),

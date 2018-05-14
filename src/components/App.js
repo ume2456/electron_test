@@ -34,9 +34,14 @@ class App extends Component {
         props.actions.addObject(data);
       }
     });
-    client.setEvent('ADD_TYPE', (data) => {
+    client.setEvent('ADD_PROP', (data) => {
       if (!isUndef(data)) {
-        props.actions.addType(data);
+        props.actions.addProp(data);
+      }
+    });
+    client.setEvent('PROPS', (data) => {
+      if (!isUndef(data)) {
+        props.actions.applyProps(data);
       }
     });
     props.actions.addClient(client);

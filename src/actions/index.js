@@ -19,14 +19,19 @@ export const addClient = (client) => ({
   client
 });
 
-export const addType = (object) => ({
-  type: 'ADD_TYPE',
-  object
-});
-
 export const addObject = (object) => ({
   type: 'ADD_OBJECT',
   object
+});
+
+export const addProp = (data) => ({
+  type: 'ADD_PROP',
+  data
+});
+
+export const applyProps = (data) => ({
+  type: 'APPLY_PROPS',
+  data
 });
 
 export const selectInstance = (id) => ({

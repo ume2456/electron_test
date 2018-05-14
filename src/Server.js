@@ -12,88 +12,51 @@ io = socket(server);
 io.on('connection', (socket) => {
   console.log('connection');
   io.emit('MESSAGE', {'name': 'Server', 'message': 'Hello'});
-  io.emit('ADD_TYPE', {
-    type: 'Hoge',
-    id: 0,
-    properties: {
-      param0: {
-        type: 'integer',
-        size: 4,
-      },
-      param1: {
-        type: 'float',
-        size: 4,
-      },
-      param2: {
-        type: 'Bar',
-        properties: {
-          param0: {
-            type: 'integer',
-            size: 4,
-          },
-          param1: {
-            type: 'float',
-            size: 4,
-          },
-          param2: {
-            type: 'Foo',
-            properties: {
-              param0: {
-                type: 'integer',
-                size: 4,
-              },
-            },
-          },
-        },
-      },
-      param3: {
-        type: 'float',
-        size: 4,
-      },
-    },
-  });
-  io.emit('ADD_TYPE', {
-    type: 'Hage',
-    id: 1,
-    properties: {
-      param0: {
-        type: 'integer',
-        size: 4,
-      },
-      param2: {
-        type: 'Bar',
-        properties: {
-          param0: {
-            type: 'integer',
-            size: 4,
-          },
-          param1: {
-            type: 'float',
-            size: 4,
-          },
-        },
-      },
-    }
-  });
   io.emit('ADD_OBJECT', {
     id: 1,
     parent: 0,
-    type_id: 0,
+    name: 'Hoge',
   });
   io.emit('ADD_OBJECT', {
     id: 2,
     parent: 0,
-    type_id: 1,
+    name: 'Hoge2',
   });
   io.emit('ADD_OBJECT', {
     id: 3,
     parent: 1,
-    type_id: 1,
+    name: 'Hoge3',
   });
   io.emit('ADD_OBJECT', {
     id: 4,
     parent: 3,
-    type_id: 1,
+    name: 'Hoge4',
+  });
+  io.emit('ADD_PROP', {
+    id: 1,
+    unique_id: 1,
+    parent: 0,
+    name: 'param0',
+    type: 'integer',
+  });
+  io.emit('ADD_PROP', {
+    id: 2,
+    unique_id: 1,
+    parent: 0,
+    name: 'param1',
+    type: 'Foo',
+  });
+  io.emit('ADD_PROP', {
+    id: 3,
+    unique_id: 1,
+    parent: 2,
+    name: 'param0',
+    type: 'integer',
+  });
+  io.emit('PROPS', {
+    id: 1,
+    innder_id: 1,
+    props: 0x7fff,
   });
 
   socket.on('disconnect', (socket) => {

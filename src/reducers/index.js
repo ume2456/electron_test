@@ -5,7 +5,6 @@ const initialState = {
   id: 0,
   messages: [],
   client: null,
-  type_map: {},
   object_map: {},
   object_list: [],
   selected_instance_id: 0,
@@ -49,17 +48,6 @@ export default (state = initialState, action) => {
       ...state,
       client: action.client,
     };
-  case 'ADD_TYPE':
-    if (isUndef(action.object) || isUndef(action.object.id)) {
-      return state;
-    }
-    return {
-      ...state,
-      type_map: {
-        ...state.type_map,
-        [action.object.id]: action.object,
-      }
-    };
   case 'ADD_OBJECT':
     if (isUndef(action.object) || isUndef(action.object.id)) {
       return state;
@@ -71,7 +59,7 @@ export default (state = initialState, action) => {
         {
           id: action.object.id,
           parent: action.object.parent,
-          type_id: action.object.type_id,
+          name: action.object.name,
         },
       ],
       object_map: {
@@ -79,6 +67,25 @@ export default (state = initialState, action) => {
         [action.object.id]: action.object,
       },
     };
+  case 'ADD_PROP':
+    if (isUndef(action.data.parent)) { return state; }
+    let object = state.object_map[action.data.unique_id];
+    if (isUndef(object)) { return state; }
+    if (isUndef(object.prop_list)) { object.prop_list = []; }
+    if (isUndef(object.prop_map)) { object.prop_map = {}; }
+    object.prop_list = [
+      ...object.prop_list,
+      action.data,
+    ];
+    object.prop_map  = {
+      ...object.prop_map,
+      [action.data.id]: action.data,
+    };
+    return {
+      ...state,
+      [state.object_map[action.data.parent]]: object,
+    }
+  case 'APPLY_PROPS':
   case 'SELECT_INSTANCE':
     return {
       ...state,

@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@denq/iron-tree@^1.2.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@denq/iron-tree/-/iron-tree-1.3.0.tgz#46913a69ea948d29781ae53094e9644a0080d284"
+
 "@types/node@^8.0.24":
   version "8.10.9"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.9.tgz#b507a74a7d3eddc74a17dc35fd40d8f45dde0d6c"
@@ -4373,6 +4377,12 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+list-to-tree@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/list-to-tree/-/list-to-tree-2.2.0.tgz#4dee64b7f6c9c800e09a55c99b0589d0e5835168"
+  dependencies:
+    "@denq/iron-tree" "^1.2.0"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -5922,6 +5932,10 @@ react-scripts@1.1.4:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "^1.1.3"
+
+react-splitter-layout@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-splitter-layout/-/react-splitter-layout-3.0.0.tgz#a0cba494ffb4e0af56b3a80679e865fc4a6dc71b"
 
 react-transition-group@^1.2.1:
   version "1.2.1"
