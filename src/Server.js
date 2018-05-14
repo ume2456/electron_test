@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
     unique_id: 1,
     parent: 0,
     name: 'param0',
-    type: 'integer',
+    type: 'float',
   });
   io.emit('ADD_PROP', {
     id: 2,
@@ -53,10 +53,15 @@ io.on('connection', (socket) => {
     name: 'param0',
     type: 'integer',
   });
-  io.emit('PROPS', {
-    id: 1,
-    innder_id: 1,
-    props: 0x7fff,
+  io.emit('APPLY_PROP', {
+    unique_id: 1,
+    inner_id: 3,
+    val: 15,
+  });
+  io.emit('APPLY_PROP', {
+    unique_id: 1,
+    inner_id: 1,
+    val: 0.01,
   });
 
   socket.on('disconnect', (socket) => {

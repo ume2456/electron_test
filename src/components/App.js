@@ -9,9 +9,6 @@ import {
 } from 'material-ui/styles';
 
 import * as actions from '../actions';
-import NameForm from './NameForm';
-import MessageForm from './MessageForm';
-import MessageList from './MessageList';
 import ObjectHierarchy from './ObjectHierarchy';
 import PropertyPage from './PropertyPage';
 import Client from '../containers/Client';
@@ -39,9 +36,9 @@ class App extends Component {
         props.actions.addProp(data);
       }
     });
-    client.setEvent('PROPS', (data) => {
+    client.setEvent('APPLY_PROP', (data) => {
       if (!isUndef(data)) {
-        props.actions.applyProps(data);
+        props.actions.applyProp(data);
       }
     });
     props.actions.addClient(client);
@@ -55,16 +52,7 @@ class App extends Component {
               <ObjectHierarchy />
             </div>
             <div style={ Styles.Detail }>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <NameForm />
-                <MessageForm />
-              </div>
-              <div style={ Styles.MessageList }>
-                <MessageList />
-              </div>
-              <div>
-                <PropertyPage />
-              </div>
+              <PropertyPage />
             </div>
           </div>
           <Toolbar style={ Styles.Footer } />
@@ -88,12 +76,10 @@ const FooterHeight = '20px';
 const HierarchyWidth = '200px';
 const Styles = {
   Contents: {
-    backgroundColor: '#0a0',
     display: 'flex',
-    justifyContent: 'left',
   },
   Hierarchy: {
-    backgroundColor: '#abc',
+    backgroundColor: '#bbb',
     minWidth: HierarchyWidth,
     maxWidth: '35%',
     height: `calc(100vh - ${FooterHeight})`,

@@ -29,8 +29,8 @@ export const addProp = (data) => ({
   data
 });
 
-export const applyProps = (data) => ({
-  type: 'APPLY_PROPS',
+export const applyProp = (data) => ({
+  type: 'APPLY_PROP',
   data
 });
 

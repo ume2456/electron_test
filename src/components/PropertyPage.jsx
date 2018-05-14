@@ -16,7 +16,6 @@ const recursiveList = (node, index) => {
   let props = {
     key: node.id,
     primaryText: `${node.name} ${node.type} ${node.value}`,
-    style: { borderStyle: 'solid', borderWidth: '0 0 1px' },
   };
   if (!isUndef(node.child)) {
     const children = node.child.map(
@@ -38,7 +37,6 @@ const createHierarchy = (list) => {
     (node, i) => recursiveList(node, i)
   );
 }
-
 
 const PropertyPage = (props) => {
   const object = props.object_map[props.selected_instance_id];

@@ -68,24 +68,38 @@ export default (state = initialState, action) => {
       },
     };
   case 'ADD_PROP':
-    if (isUndef(action.data.parent)) { return state; }
-    let object = state.object_map[action.data.unique_id];
-    if (isUndef(object)) { return state; }
-    if (isUndef(object.prop_list)) { object.prop_list = []; }
-    if (isUndef(object.prop_map)) { object.prop_map = {}; }
-    object.prop_list = [
-      ...object.prop_list,
-      action.data,
-    ];
-    object.prop_map  = {
-      ...object.prop_map,
-      [action.data.id]: action.data,
-    };
-    return {
-      ...state,
-      [state.object_map[action.data.parent]]: object,
+    {
+      if (isUndef(action.data.unique_id)) { return state; }
+      let object = state.object_map[action.data.unique_id];
+      if (isUndef(object)) { return state; }
+      if (isUndef(object.prop_list)) { object.prop_list = []; }
+      if (isUndef(object.prop_map)) { object.prop_map = {}; }
+      object.prop_list = [
+        ...object.prop_list,
+        action.data,
+      ];
+      object.prop_map  = {
+        ...object.prop_map,
+        [action.data.id]: action.data,
+      };
+      return {
+        ...state,
+        [state.object_map[action.data.unique_id]]: object,
+      }
     }
-  case 'APPLY_PROPS':
+  case 'APPLY_PROP':
+    {
+      if (isUndef(action.data.unique_id)) { return state; }
+      if (isUndef(action.data.inner_id)) { return state; }
+      let object = state.object_map[action.data.unique_id];
+      if (isUndef(object)) { return state; }
+      if (isUndef(object.prop_map)) { return state; }
+      object.prop_map[action.data.inner_id].value = action.data.val;
+      return {
+        ...state,
+        [state.object_map[action.data.unique_id]]: object,
+      }
+    }
   case 'SELECT_INSTANCE':
     return {
       ...state,
