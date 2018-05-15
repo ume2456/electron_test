@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import {
   Divider,
   List,
@@ -8,14 +7,12 @@ import {
   Subheader
 } from 'material-ui';
 
-import * as actions from '../actions/index';
 import { isUndef, listToTree } from '../utility';
 
 const recursiveList = (node, index) => {
   if (isUndef(node)) { return; }
   let props = {
     key: node.id,
-    primaryText: `${node.name} ${node.type} ${node.value}`,
   };
   if (!isUndef(node.child)) {
     const children = node.child.map(
@@ -26,7 +23,13 @@ const recursiveList = (node, index) => {
       nestedItems: children
     };
   }
-  return (React.createElement(ListItem, props));
+  let elmChildren =
+    <div style={{ display: 'flex' }}>
+      <label style={{ flexGrow: '1' }}>{ node.name }</label>
+      <label style={{ flexGrow: '1' }}>{ node.type }</label>
+      <label style={{ flexGrow: '1' }}>{ node.value }</label>
+    </div>;
+  return React.createElement(ListItem, props, elmChildren);
 }
 
 const createHierarchy = (list) => {
@@ -66,8 +69,5 @@ const mapStateToProps = state => ({
   selected_instance_id: state.selected_instance_id,
   object_map: state.object_map,
 });
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PropertyPage);
+export default connect(mapStateToProps, null)(PropertyPage);
